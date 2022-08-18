@@ -4,6 +4,7 @@ import { Container, SectionTitle } from './App.styled';
 import { Contacts } from 'components/Contacts/Contacts';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { initialValues } from 'utiles/initialValues';
+import { Filter } from 'components/Filter/Filter';
 
 
 
@@ -28,9 +29,9 @@ export class App extends Component {
 
   isNamePresent = (name) => {    
     const normalizedName = name.toLowerCase();
-    const normalizedArray = this.handleNormilizeContacts();
+    const normalizedArrayContacts = this.handleNormilizeContacts();
     
-    return normalizedArray.find(item=>item===normalizedName);
+    return normalizedArrayContacts.find(item=>item===normalizedName);
   }
 
   handleDeleteContact = (id) => {
@@ -39,6 +40,19 @@ export class App extends Component {
     }));    
   }
    
+  changeFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
+  }
+
+   getVisibleContacts = () => {    
+    const normalizedFilter = this.state.filter.toLowerCase();
+
+    return this.state.contacts.filter(item =>
+      item.name.toLowerCase().includes(normalizedFilter),
+    );
+  };
+
+
   render() {
     
     return (<>
@@ -46,8 +60,9 @@ export class App extends Component {
       <Container>
         <SectionTitle>Phonebook</SectionTitle>
         <ContactForm onSubmit={this.handleSubmit} isNamePresent={this.isNamePresent} />
+        <Filter value={this.state.filter} onChange={this.changeFilter}/>
         <SectionTitle>Contacts</SectionTitle>
-        <Contacts contacts={this.state.contacts} onDelete={this.handleDeleteContact} />         
+        <Contacts contacts={this.getVisibleContacts()} onDelete={this.handleDeleteContact} />         
         
       </Container>
       </>
