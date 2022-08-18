@@ -26,12 +26,17 @@ export class ContactForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.onSubmit({...this.state, id: this.getId()});
+        this.setState(prevState => {
+            if (!this.props.isNamePresent(prevState.name)) {
+            this.props.onSubmit({ ...this.state, id: this.getId() });        
+        }
         this.reset();    
+        return
+        })                
     }
 
     render() {
-        return <form  onSubmit={this.handleSubmit}>
+        return <form  onSubmit={this.handleSubmit} >
           <label>Name
             <input
               type="text"
