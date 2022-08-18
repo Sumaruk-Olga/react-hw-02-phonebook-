@@ -27,6 +27,7 @@ export class ContactForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState(prevState => {
+          console.log('callback',this.props.isNamePresent(prevState.name));
             if (!this.props.isNamePresent(prevState.name)) {
             this.props.onSubmit({ ...this.state, id: this.getId() });        
         }

@@ -4,19 +4,26 @@ export const ContactsList = styled.ul`
 width: 90%;
 margin: 15px auto;
 @media screen and (min-width: 768px) {
-      width: 75%;
+      width: 65%;
     }
     @media screen and (min-width: 1200px) {
-      width: 50%;
+      width: 90%;
   }
 `;
 
 export const ContactItem = styled.li`
-border: 2px solid red;
 display: flex;
 justify-content: space-between;
+padding: 0 10px;
+margin-bottom:10px;
 `;
 
 export const DeleteButton = styled.button`
-border: 1px solid green;
+border: 1px solid ${p => p.theme.colors.accent};
+border-radius: ${p => p.theme.radii.normal};
+cursor: pointer;
+@media screen and (min-width: 768px) {
+      margin-right: 50px;
+    }
+
 `;
