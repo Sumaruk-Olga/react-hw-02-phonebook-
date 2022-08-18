@@ -20,6 +20,7 @@ export const Container = styled.div`
     }
     @media screen and (min-width: 1200px) {
       width: 40%;
+      margin-top: 100px;
   }
 `;
 

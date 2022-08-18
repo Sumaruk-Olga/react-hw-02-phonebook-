@@ -23,15 +23,9 @@ export class App extends Component {
     }) 
   }
 
-  handleNormilizeContacts = () => {
-  return this.state.contacts.map(item => item.name.toLowerCase());
-}
-
   isNamePresent = (name) => {    
-    const normalizedName = name.toLowerCase();
-    const normalizedArrayContacts = this.handleNormilizeContacts();
-    
-    return normalizedArrayContacts.find(item=>item===normalizedName);
+    const normalizedName = name.toLowerCase();    
+    return this.state.contacts.find(item=>item.name.toLowerCase()===normalizedName);
   }
 
   handleDeleteContact = (id) => {
@@ -47,9 +41,7 @@ export class App extends Component {
    getVisibleContacts = () => {    
     const normalizedFilter = this.state.filter.toLowerCase();
 
-    return this.state.contacts.filter(item =>
-      item.name.toLowerCase().includes(normalizedFilter),
-    );
+    return this.state.contacts.filter(item =>item.name.toLowerCase().includes(normalizedFilter));
   };
 
 
@@ -62,8 +54,7 @@ export class App extends Component {
         <ContactForm onSubmit={this.handleSubmit} isNamePresent={this.isNamePresent} />
         <Filter value={this.state.filter} onChange={this.changeFilter}/>
         <SectionTitle>Contacts</SectionTitle>
-        <Contacts contacts={this.getVisibleContacts()} onDelete={this.handleDeleteContact} />         
-        
+        <Contacts contacts={this.getVisibleContacts()} onDelete={this.handleDeleteContact} />
       </Container>
       </>
     );

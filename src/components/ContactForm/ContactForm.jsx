@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from "react";
 import { nanoid } from 'nanoid';
 import { Form, Button, Input } from "./ContactForm.styled";
@@ -38,7 +39,7 @@ export class ContactForm extends Component {
     }
 
     render() {
-        return <Form  onSubmit={this.handleSubmit} >
+        return <Form autoComplete="off" onSubmit={this.handleSubmit} >
           <label>Name
             <Input
               type="text"
@@ -51,17 +52,23 @@ export class ContactForm extends Component {
             />
           </label>
           <label>Number
-          <Input
-  type="tel"
-            name="number"
-            value={this.state.number}
-            onChange={this.handleChange}
-  pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-  required
+            <Input
+              type="tel"
+              name="number"
+              value={this.state.number}
+              onChange={this.handleChange}
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
             />
-            </label>
+          </label>
           <Button type='submit'>add</Button>
-        </Form>}
+      </Form>      
+    }
     
+}
+
+ContactForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    isNamePresent:PropTypes.func.isRequired,
 }
