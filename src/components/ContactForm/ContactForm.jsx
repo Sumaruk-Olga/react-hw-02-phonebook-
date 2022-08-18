@@ -26,14 +26,15 @@ export class ContactForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.setState(prevState => {
-          console.log('callback',this.props.isNamePresent(prevState.name));
-            if (!this.props.isNamePresent(prevState.name)) {
-            this.props.onSubmit({ ...this.state, id: this.getId() });        
-        }
-        this.reset();    
-        return
-        })                
+      const isNamePresent = this.props.isNamePresent(this.state.name);      
+      this.reset();    
+      if (!isNamePresent) {
+        this.props.onSubmit({ ...this.state, id: nanoid() });        
+      } else {
+        alert(`${this.state.name} is already in contacts`);
+      }
+
+    this.reset();
     }
 
     render() {

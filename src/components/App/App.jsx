@@ -14,8 +14,7 @@ export class App extends Component {
     filter:''
   };  
 
-  handleSubmit = (obj) => {    
-    // console.log(obj);
+  handleSubmit = (obj) => { 
     this.setState(prevState => {   
         const newState = { ...prevState };
         newState.contacts.push(obj);
@@ -23,17 +22,15 @@ export class App extends Component {
     }) 
   }
 
-  isNamePresent = (name) => {
+  handleNormilizeContacts = () => {
+  return this.state.contacts.map(item => item.name.toLowerCase());
+}
+
+  isNamePresent = (name) => {    
+    const normalizedName = name.toLowerCase();
+    const normalizedArray = this.handleNormilizeContacts();
     
-    this.setState(prevState => {
-      prevState.contacts.find(item => {
-        if (item.name.toLowerCase() === name.toLowerCase()) {
-          alert(`${name} is already in contacts`);
-          return true;
-        }
-        return false;
-      })
-    })
+    return normalizedArray.find(item=>item===normalizedName);
   }
 
   handleDeleteContact = (id) => {
