@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 
 export const ContactsList = styled.ul`
 width: 90%;
-margin: 15px auto;
+margin-left: auto;
+margin-right: auto;
 @media screen and (min-width: 768px) {
       width: 65%;
     }

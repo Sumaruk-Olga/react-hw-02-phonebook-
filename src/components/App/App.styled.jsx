@@ -19,10 +19,11 @@ export const Container = styled.div`
       width: 75%;
     }
     @media screen and (min-width: 1200px) {
-      width: 30%;
+      width: 40%;
   }
 `;
 
 export const SectionTitle = styled.h2`
 font-size: ${p => p.theme.fontSizes.l};
+margin-bottom: 15px;
 `;
