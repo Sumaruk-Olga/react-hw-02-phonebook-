@@ -31,11 +31,11 @@ export class ContactForm extends Component {
       const isNamePresent = this.props.isNamePresent(this.state.name);
 
       if (!isNamePresent) {
-        this.props.onSubmit({ ...this.state, id: nanoid() });        
+        this.props.onSubmit({ ...this.state, id: nanoid() });   
+        this.reset();
       } else {
         alert(`${this.state.name} is already in contacts`);
-      }
-    this.reset();
+      }    
     }
 
     render() {

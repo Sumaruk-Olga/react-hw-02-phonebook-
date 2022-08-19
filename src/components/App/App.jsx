@@ -15,12 +15,10 @@ export class App extends Component {
     filter:''
   };  
 
-  handleSubmit = (obj) => { 
-    this.setState(prevState => {   
-        const newState = { ...prevState };
-        newState.contacts.push(obj);
-        return newState;
-    }) 
+  handleSubmit = (obj) => {     
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, obj]
+    }))
   }
 
   isNamePresent = (name) => {    
